@@ -2,17 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=https://www.prismaticpowders.com/applicators/2213/bradford-powder-coating?tab=review">
-    <script>
-        window.onload = function() {
-            setTimeout(function() {
-                document.querySelector('.btn.btn-alt-outline').click();
-            }, 1000);
-        };
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
 </head>
 <body>
-    Redirecting to the review page...
+    <p>Redirecting to the review page...</p>
+
+    <script>
+        // Redirect to the target page after a short delay
+        setTimeout(function() {
+            window.location.href = 'https://www.prismaticpowders.com/applicators/2213/bradford-powder-coating?tab=review';
+        }, 1000); // 1-second delay
+
+        // After redirecting, wait for the page to load completely before attempting to click the button
+        window.onload = function() {
+            setTimeout(function() {
+                var button = document.querySelector('.btn.btn-alt-outline');
+                if (button) {
+                    button.click();
+                } else {
+                    console.log("Button not found.");
+                }
+            }, 3000); // 3-second delay to ensure the page loads fully
+        };
+    </script>
 </body>
 </html>
