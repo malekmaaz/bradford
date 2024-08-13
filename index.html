@@ -3,27 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
+    <title>Auto Click Button</title>
 </head>
 <body>
     <p>Redirecting to the review page...</p>
 
     <script>
-        // Redirect to the target page after a short delay
-        setTimeout(function() {
-            window.location.href = 'https://www.prismaticpowders.com/applicators/2213/bradford-powder-coating?tab=review';
-        }, 1000); // 1-second delay
-
-        // After redirecting, wait for the page to load completely before attempting to click the button
+        // Wait for the page to load, then click the button
         window.onload = function() {
+            // Replace the window.location with the actual URL
+            window.location.href = 'https://www.prismaticpowders.com/applicators/2213/bradford-powder-coating?tab=review';
             setTimeout(function() {
-                var button = document.querySelector('.btn.btn-alt-outline');
-                if (button) {
-                    button.click();
-                } else {
-                    console.log("Button not found.");
-                }
-            }, 3000); // 3-second delay to ensure the page loads fully
+                document.querySelector('.btn.btn-alt-outline').click();
+            }, 2000); // Wait 2 seconds to ensure the page has fully loaded
         };
     </script>
 </body>
