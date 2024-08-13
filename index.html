@@ -3,20 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Click Button</title>
+    <title>Redirecting...</title>
+    <script>
+        // Function to inject and execute our script on the target page
+        function injectScript(src, callback) {
+            var script = document.createElement('script');
+            script.src = src;
+            script.onload = callback;
+            document.head.appendChild(script);
+        }
+
+        // Function to redirect to the target page
+        function redirect() {
+            var targetUrl = 'https://www.prismaticpowders.com/applicators/2213/bradford-powder-coating?tab=review';
+            
+            // Create a link to the target URL
+            var link = document.createElement('a');
+            link.href = targetUrl;
+            
+            // Append our custom parameter
+            link.hash = 'injectScript';
+            
+            // Redirect
+            window.location.href = link.href;
+        }
+
+        // Redirect after a short delay (for demo purposes, you might want to remove this in production)
+        setTimeout(redirect, 1000);
+    </script>
 </head>
 <body>
-    <p>Redirecting to the review page...</p>
-
-    <script>
-        // Wait for the page to load, then click the button
-        window.onload = function() {
-            // Replace the window.location with the actual URL
-            window.location.href = 'https://www.prismaticpowders.com/applicators/2213/bradford-powder-coating?tab=review';
-            setTimeout(function() {
-                document.querySelector('.btn.btn-alt-outline').click();
-            }, 6000); // Wait 2 seconds to ensure the page has fully loaded
-        };
-    </script>
+    <p>Redirecting to Prismatic Powders...</p>
 </body>
 </html>
