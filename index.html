@@ -3,36 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
+    <title>Redirecting to Prismatic Powders</title>
     <script>
-        // Function to inject and execute our script on the target page
-        function injectScript(src, callback) {
-            var script = document.createElement('script');
-            script.src = src;
-            script.onload = callback;
-            document.head.appendChild(script);
-        }
-
-        // Function to redirect to the target page
         function redirect() {
+            // The target URL
             var targetUrl = 'https://www.prismaticpowders.com/applicators/2213/bradford-powder-coating?tab=review';
             
-            // Create a link to the target URL
-            var link = document.createElement('a');
-            link.href = targetUrl;
+            // The script we want to inject
+            var injectedScript = `
+                (function() {
+                    function openReviewModal() {
+                        var button = document.querySelector('button.btn.btn-alt-outline');
+                        if (button) {
+                            button.click();
+                        }
+                    }
+                    
+                    if (document.readyState === 'complete') {
+                        openReviewModal();
+                    } else {
+                        window.addEventListener('load', openReviewModal);
+                    }
+                })();
+            `;
             
-            // Append our custom parameter
-            link.hash = 'injectScript';
+            // Create a new window or tab
+            var newWindow = window.open(targetUrl);
             
-            // Redirect
-            window.location.href = link.href;
+            // Wait for the new window to load, then inject our script
+            newWindow.onload = function() {
+                var script = newWindow.document.createElement('script');
+                script.textContent = injectedScript;
+                newWindow.document.body.appendChild(script);
+            };
         }
-
-        // Redirect after a short delay (for demo purposes, you might want to remove this in production)
-        setTimeout(redirect, 1000);
     </script>
 </head>
-<body>
+<body onload="redirect()">
     <p>Redirecting to Prismatic Powders...</p>
 </body>
 </html>
